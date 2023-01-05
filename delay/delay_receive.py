@@ -10,6 +10,8 @@ from random import randint
 
 SERVICE_ID = 829
 
+INTERVAL = 1000
+
 DELAY_0 = 20
 DELAY_1 = 50
 
@@ -39,8 +41,13 @@ def callback(packet):
 
 				if last_time > 0:
 					
-					delay = (pkt.time - last_time) * 1000
+					delay = (pkt.time - last_time) * 1000 - INTERVAL
 					print("Delay: {} ms".format(delay))
+
+					if delay > DELAY_1:
+						print("Detected: 1")
+					elif delay > DELAY_0:
+						print("Detected: 0")
 				
 				last_time = pkt.time
 					

@@ -8,10 +8,10 @@ from struct import *
 
 from random import randint
 
-SERVICE_0 = 829
-SERVICE_1 = 829
-DELAY_0 = 20
-DELAY_1 = 50
+SERVICE_ID = 829
+
+DELAY_0 = 30
+DELAY_1 = 60
 
 MESSAGE = "1111111111111111111111111111111111111111111111111111111111111111111111111111111111"
 
@@ -21,6 +21,8 @@ def generator():
 
 message_gen = generator()
 next_char = next(message_gen, "")
+
+wait = False
 
 print("[*] Adding iptables rule")
 os.system("iptables -A OUTPUT -p tcp --sport 53530 -j NFQUEUE")
@@ -42,20 +44,24 @@ def callback(packet):
 
 		if message_type == b"MSGF":
 
-			if next_char == "0":
-				if service_id == SERVICE_0:
+			if service_id == SERVICE_ID:
 
-					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_0, DELAY_0))
+				if wait:
+					print("{}: Waiting")
+					wait = False
+
+				if next_char == "0":
+					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_ID, DELAY_0))
 
 					next_char = next(message_gen, "")
+					wait = True
 					time.sleep(DELAY_0 / 1000)
 
-			elif next_char == "1":
-				if service_id == SERVICE_1:
-
-					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_1, DELAY_1))
+				elif next_char == "1":
+					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_ID, DELAY_1))
 
 					next_char = next(message_gen, "")
+					wait = True
 					time.sleep(DELAY_1 / 1000)
 
 	packet.accept()
