@@ -39,7 +39,7 @@ def callback(packet):
 
 				if last_time > 0:
 					
-					delay = time.time() - last_time
+					delay = (time.time() - last_time) * 1000
 					print("Delay: {} ms".format(delay))
 				
 				last_time = time.time()
