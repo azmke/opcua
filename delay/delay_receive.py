@@ -10,7 +10,7 @@ from random import randint
 
 SERVICE_ID = 829
 
-INTERVAL = 100
+INTERVAL = 1000
 
 DELAY_0 = 30
 DELAY_1 = 60
