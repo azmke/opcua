@@ -48,18 +48,18 @@ def callback(packet):
 			if service_id == SERVICE_ID:
 
 				if wait:
-					print("{}: Waiting")
+					print("Waiting...")
 					wait = False
 
 				elif next_char == "0":
-					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_ID, DELAY_0))
+					print("{}: Packet service id {} - Delay {:.2f} ms".format(next_char, SERVICE_ID, DELAY_0))
 
 					next_char = next(message_gen, "")
 					wait = True
 					time.sleep(DELAY_0 / 1000)
 
 				elif next_char == "1":
-					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_ID, DELAY_1))
+					print("{}: Packet service id {} - Delay {:.2f} ms".format(next_char, SERVICE_ID, DELAY_1))
 
 					next_char = next(message_gen, "")
 					wait = True
