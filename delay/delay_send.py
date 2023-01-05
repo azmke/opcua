@@ -13,7 +13,7 @@ SERVICE_1 = 829
 DELAY_0 = 20
 DELAY_1 = 50
 
-MESSAGE = "11011"
+MESSAGE = "11011110111101111011110111101111011110111101111011110111101111011110111101111011110111101111011110111101111011"
 
 def generator():
 	for c in MESSAGE:
@@ -48,7 +48,7 @@ def callback(packet):
 					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_0, DELAY_0))
 
 					next_char = next(message_gen, "")
-					time.sleep(DELAY_0)
+					time.sleep(DELAY_0 / 1000)
 
 			elif next_char == "1":
 				if service_id == SERVICE_1:
@@ -56,7 +56,7 @@ def callback(packet):
 					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_1, DELAY_1))
 
 					next_char = next(message_gen, "")
-					time.sleep(DELAY_1)
+					time.sleep(DELAY_1 / 1000)
 
 	packet.accept()
 	return
