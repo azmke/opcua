@@ -103,8 +103,27 @@ def process_json(file_name):
 	# convert json object to a python object
 	packets = json.load(file)
 
+	print("= [ Packet length ] =")
+	print("Minimum:		{}".format(get_length_min(packets)))
+	print("Maximum:		{}".format(get_length_max(packets)))
+	print("Average:		{:.2f}".format(get_length_avg(packets)))
+	print("Variance:		{:.2f}".format(get_length_var(packets)))
+	print("Standard Deviation:	{:.2f}".format(get_length_std(packets)))
+	print("")
+
 	show_length_hist(packets)
+
+	print("= [ Interpacket Times ] =")
+	print("Minimum:		{:.0f} ms".format(get_delay_min(packets)))
+	print("Maximum:		{:.0f} ms".format(get_delay_max(packets)))
+	print("Average:		{:.2f} ms".format(get_delay_avg(packets)))
+	print("Variance:		{:.2f}".format(get_delay_var(packets)))
+	print("Standard Deviation:	{:.2f}".format(get_delay_std(packets)))
+	print("")
+
 	show_delay_hist(packets)
+
+	print("= [ OPC UA Services ] =")
 
 	services = get_services(packets)
 	for service in services:
