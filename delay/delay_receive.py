@@ -16,7 +16,7 @@ DELAY_1 = 50
 last_time = -1
 
 print("[*] Adding iptables rule")
-os.system("iptables -A INPUT -p tcp --dport 53530 -j NFQUEUE")
+os.system("iptables -A INPUT -p tcp --sport 53530 -j NFQUEUE")
 
 def callback(packet):
 
