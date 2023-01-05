@@ -51,7 +51,7 @@ def callback(packet):
 					print("{}: Waiting")
 					wait = False
 
-				if next_char == "0":
+				elif next_char == "0":
 					print("{}: Packet service id {} - Delay {} ms".format(next_char, SERVICE_ID, DELAY_0))
 
 					next_char = next(message_gen, "")
