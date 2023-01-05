@@ -27,6 +27,8 @@ os.system("iptables -A OUTPUT -p tcp --sport 53530 -j NFQUEUE")
 
 def callback(packet):
 
+	global next_char
+
 	print(packet)
 
 	pkt = IP(packet.get_payload())
