@@ -29,6 +29,7 @@ os.system("iptables -A OUTPUT -p tcp --sport 53530 -j NFQUEUE")
 
 def callback(packet):
 
+	global wait
 	global next_char
 
 	print(packet)

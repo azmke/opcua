@@ -12,8 +12,8 @@ SERVICE_ID = 829
 
 INTERVAL = 1000
 
-DELAY_0 = 20
-DELAY_1 = 50
+DELAY_0 = 30
+DELAY_1 = 60
 
 last_time = -1
 
