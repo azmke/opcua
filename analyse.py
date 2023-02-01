@@ -77,7 +77,17 @@ def show_delay_hist(packets):
 	plt.title("Packet delays")
 	plt.show()
 
-# OpcUa
+def get_bandwidth_min(packets):
+	# 1 Bit / Packet
+	# Result: Bytes/s
+	return 1 / (get_delay_max(packets) or 1) * 1000 / 8
+
+def get_bandwidth_max(packets):
+	# 1 Bit/Packet
+	# Result: Bytes/s
+	return 1 / (get_delay_min(packets) or 1) * 1000 / 8
+
+# OPC UA Services
 
 def get_services(packets):
 	service_ids = []
@@ -119,6 +129,9 @@ def process_json(file_name):
 	print("Average:		{:.2f} ms".format(get_delay_avg(packets)))
 	print("Variance:		{:.2f}".format(get_delay_var(packets)))
 	print("Standard Deviation:	{:.2f}".format(get_delay_std(packets)))
+	print("")
+	print("Min. Bandwidth:	{:.2f} B/s".format(get_bandwidth_min(packets)))
+	print("Max. Bandwidth:	{:.2f} B/s".format(get_bandwidth_max(packets)))
 	print("")
 
 	show_delay_hist(packets)
